@@ -163,6 +163,20 @@ def markdown_to_html(markdown: str) -> str:
     return "\n".join(out)
 
 
+def clean_for_index(text: str) -> str:
+    text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
+    text = re.sub(r"\*([^*]+)\*", r"\1", text)
+    text = re.sub(r"^#+\s*", "", text, flags=re.MULTILINE)
+    text = re.sub(r"^\s*[-*+]\s+", "", text, flags=re.MULTILINE)
+    text = re.sub(r"^\s*\d+\.\s+", "", text, flags=re.MULTILINE)
+    text = re.sub(r"<[^>]+>", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def load_site() -> dict[str, str]:
     return json.loads(SITE_CONFIG.read_text(encoding="utf-8"))
 
@@ -313,7 +327,13 @@ def build(out_dir: Path) -> None:
     </article>"""
         write(out_dir, post.url, page(post.title, article, "posts", site, "page"))
 
-    post_data = [[post.title, f"{post.description} {' '.join(post.tags)}", post.url] for post in posts]
+    post_data = [{
+        "title": post.title,
+        "desc": post.description,
+        "tags": post.tags,
+        "body": clean_for_index(post.body),
+        "url": post.url,
+    } for post in posts]
     script = f"""const root = document.documentElement;
 const button = document.querySelector('#theme-toggle');
 const storedTheme = localStorage.getItem('theme');
@@ -337,16 +357,36 @@ const posts = {json.dumps(post_data, ensure_ascii=False, indent=2)};
 
 function renderResults(keyword = '') {{
   if (!searchResults) return;
-  const normalized = keyword.trim().toLowerCase();
-  const matched = posts.filter(([title, desc]) =>
-    !normalized || `${{title}} ${{desc}}`.toLowerCase().includes(normalized)
-  );
+  const raw = keyword.trim();
+  const keywords = raw.toLowerCase().split(/\\s+/).filter(Boolean);
 
-  searchResults.innerHTML = matched.map(([title, desc, href]) => `
+  const scored = posts.map(post => {{
+    const title = post.title.toLowerCase();
+    const desc = post.desc.toLowerCase();
+    const tags = (post.tags || []).join(' ').toLowerCase();
+    const body = (post.body || '').toLowerCase();
+    let score = 0;
+    const reasons = [];
+
+    for (const kw of keywords) {{
+      let hit = false;
+      if (title.includes(kw)) {{ score += 100; hit = true; if (!reasons.includes('标题匹配')) reasons.push('标题匹配'); }}
+      if (tags.includes(kw)) {{ score += 50; hit = true; if (!reasons.includes('标签匹配')) reasons.push('标签匹配'); }}
+      if (desc.includes(kw)) {{ score += 30; hit = true; if (!reasons.includes('描述匹配')) reasons.push('描述匹配'); }}
+      if (body.includes(kw)) {{ score += 10; hit = true; if (!reasons.includes('正文匹配')) reasons.push('正文匹配'); }}
+      if (!hit) return null;
+    }}
+
+    return {{ ...post, score, reasons }};
+  }});
+
+  const matched = scored.filter(Boolean).sort((a, b) => b.score - a.score);
+
+  searchResults.innerHTML = matched.map(post => `
     <article class="post-card">
-      <div class="post-meta"><time>搜索结果</time></div>
-      <h3><a href="${{href}}">${{title}}</a></h3>
-      <p>${{desc}}</p>
+      <div class="post-meta"><time>${{post.reasons.join(' / ') || '搜索结果'}}</time></div>
+      <h3><a href="${{post.url}}">${{post.title}}</a></h3>
+      <p>${{post.desc}}</p>
     </article>
   `).join('') || '<p class="hint">没有找到相关文章，换个关键词试试。</p>';
 }}
