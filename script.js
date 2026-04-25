@@ -19,7 +19,7 @@ const searchInput = document.querySelector('#search-input');
 const searchResults = document.querySelector('#search-results');
 
 const posts = [
-  ['深入理解 JavaScript 闭包', '闭包、作用域、函数式编程', 'posts.html'],
+  ['AI 学习路线：从会用到会做', 'AI 入门、提示词、机器学习、RAG、小项目', 'ai-learning.html'],
   ['现代 CSS 布局完全指南', 'Flexbox、Grid、容器查询、设计', 'posts.html'],
   ['Web 性能优化实战手册', '加载优化、运行时优化、网络优化', 'posts.html'],
   ['React 18 并发特性初探', 'Suspense、useTransition、并发渲染', 'posts.html'],
