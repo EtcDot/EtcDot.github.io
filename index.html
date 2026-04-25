@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清风笔记 | 首页</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">清风笔记</a>
+        <div class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="posts.html">文章</a>
+          <a href="tags.html">标签</a>
+          <a href="archives.html">归档</a>
+          <a href="search.html">搜索</a>
+        </div>
+        <button id="theme-toggle" aria-label="切换主题">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>你好，我是清风</h1>
+      <p class="hero-desc">一名热爱技术、阅读与思考的开发者。在这里记录学习心得、项目经验和生活感悟。</p>
+      <div class="hero-links">
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="about.html">关于我 →</a>
+      </div>
+    </section>
+
+    <section class="featured-posts">
+      <h2>精选文章</h2>
+      <div class="post-list">
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-20</time>
+            <span class="post-tags">
+              <a href="tags.html">前端</a>
+              <a href="tags.html">JavaScript</a>
+            </span>
+          </div>
+          <h3><a href="posts.html">深入理解 JavaScript 闭包</a></h3>
+          <p>闭包是 JavaScript 中最重要也最容易被误解的概念之一。本文从底层原理出发，带你彻底掌握闭包的工作机制与实际应用场景。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-15</time>
+            <span class="post-tags">
+              <a href="tags.html">CSS</a>
+              <a href="tags.html">设计</a>
+            </span>
+          </div>
+          <h3><a href="posts.html">现代 CSS 布局完全指南</a></h3>
+          <p>从 Flexbox 到 Grid，从容器查询到层叠上下文，系统梳理现代 CSS 布局方案的选型思路与实践技巧。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-10</time>
+            <span class="post-tags">
+              <a href="tags.html">性能</a>
+              <a href="tags.html">优化</a>
+            </span>
+          </div>
+          <h3><a href="posts.html">Web 性能优化实战手册</a></h3>
+          <p>总结多年前端性能优化经验，涵盖加载时、运行时、网络三个维度的 30+ 条实用优化建议。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="recent-posts">
+      <h2>最新文章</h2>
+      <div class="post-list">
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-08</time>
+            <span class="post-tags"><a href="tags.html">React</a></span>
+          </div>
+          <h3><a href="posts.html">React 18 并发特性初探</a></h3>
+          <p>React 18 引入了全新的并发渲染机制，本文将介绍 Suspense、useTransition、useDeferredValue 等核心 API 的使用方法。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-05</time>
+            <span class="post-tags"><a href="tags.html">阅读</a></span>
+          </div>
+          <h3><a href="posts.html">2026 年第一季度读书总结</a></h3>
+          <p>本季度读了 12 本书，涵盖技术、哲学、小说三个类别。分享每本书的核心观点与个人感悟。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-04-01</time>
+            <span class="post-tags"><a href="tags.html">工具</a></span>
+          </div>
+          <h3><a href="posts.html">我的开发工具链 2026</a></h3>
+          <p>每年更新一次的工具链分享，从编辑器到终端，从版本管理到 CI/CD，精选每一款提高效率的工具。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-03-28</time>
+            <span class="post-tags"><a href="tags.html">架构</a></span>
+          </div>
+          <h3><a href="posts.html">微前端架构选型指南</a></h3>
+          <p>对比 Module Federation、qiankun、Micro-app 等主流方案，结合真实项目经验给出选型建议。</p>
+        </article>
+        <article class="post-card">
+          <div class="post-meta">
+            <time>2026-03-20</time>
+            <span class="post-tags"><a href="tags.html">TypeScript</a></span>
+          </div>
+          <h3><a href="posts.html">TypeScript 类型体操入门</a></h3>
+          <p>从内置工具类型出发，逐步掌握条件类型、映射类型、模板字面量类型等高级类型编程技巧。</p>
+        </article>
+      </div>
+      <div class="section-footer">
+        <a href="posts.html">查看全部文章 →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 清风笔记. 使用 <a href="https://github.com" target="_blank">GitHub Pages</a> 托管。</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

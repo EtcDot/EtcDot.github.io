@@ -1,0 +1,292 @@
+:root {
+  color-scheme: light;
+  --bg: #fffaf0;
+  --bg-soft: #fff3da;
+  --text: #231f20;
+  --muted: #70685f;
+  --line: #eadcc3;
+  --card: rgba(255, 255, 255, 0.7);
+  --accent: #b45309;
+  --accent-2: #0f766e;
+  --shadow: 0 18px 60px rgba(98, 59, 18, 0.11);
+}
+
+:root.dark {
+  color-scheme: dark;
+  --bg: #15120d;
+  --bg-soft: #211b13;
+  --text: #fff3df;
+  --muted: #b8aa95;
+  --line: #3a3024;
+  --card: rgba(33, 27, 19, 0.76);
+  --accent: #f59e0b;
+  --accent-2: #5eead4;
+  --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 34rem),
+    radial-gradient(circle at 80% 10%, rgba(15, 118, 110, 0.14), transparent 26rem),
+    linear-gradient(180deg, var(--bg), var(--bg-soft));
+  font-family: "Noto Serif SC", Georgia, serif;
+  line-height: 1.75;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+.container {
+  width: min(100% - 32px, 760px);
+  margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 74px;
+}
+
+.logo {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-right: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+}
+
+.nav-links a.active,
+.nav-links a:hover { color: var(--text); }
+
+#theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  width: 38px;
+  height: 38px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+main { padding: 58px 0 72px; }
+
+.hero {
+  margin-bottom: 62px;
+  animation: rise 0.7s ease both;
+}
+
+.hero h1,
+.page h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.35rem, 7vw, 4.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.065em;
+}
+
+.hero-desc {
+  max-width: 650px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.hero-links,
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.hero-links a,
+.social-row a,
+.section-footer a {
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  font-weight: 700;
+}
+
+section { margin-top: 54px; }
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.post-list {
+  display: grid;
+  gap: 15px;
+}
+
+.post-card {
+  position: relative;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  animation: rise 0.55s ease both;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.post-card h3 {
+  margin: 8px 0 8px;
+  font-size: 1.28rem;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+}
+
+.post-card p { margin: 0; color: var(--muted); }
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.86rem;
+}
+
+.post-tags { display: inline-flex; flex-wrap: wrap; gap: 7px; }
+.post-tags a,
+.tag {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px 9px;
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+  color: var(--accent-2);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.section-footer { margin-top: 20px; }
+
+.page { max-width: 760px; }
+.page h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+.page p { color: var(--muted); }
+.page ul { padding-left: 1.15rem; }
+
+.about-content,
+.search-panel {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.tag { padding: 8px 13px; }
+.tag::after { content: " " attr(data-count); color: var(--muted); }
+.tag-sm { font-size: 0.95rem; }
+.tag-md { font-size: 1.08rem; }
+.tag-lg { font-size: 1.2rem; }
+.tag-xl { font-size: 1.36rem; }
+
+.archives-list ul {
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.archives-list li {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.archives-list time {
+  color: var(--muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.archive-year {
+  color: var(--accent);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.search-panel input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--text);
+  background: var(--bg);
+  font: inherit;
+}
+
+.search-panel .hint { margin: 12px 0 0; }
+
+.site-footer {
+  padding: 30px 0 44px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 0.94rem;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 680px) {
+  .container { width: min(100% - 24px, 760px); }
+  .nav { align-items: flex-start; flex-wrap: wrap; padding: 15px 0; gap: 12px; }
+  .logo { width: calc(100% - 56px); }
+  .nav-links { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  main { padding-top: 38px; }
+  .post-card, .about-content, .search-panel { padding: 18px; border-radius: 18px; }
+  .archives-list li { grid-template-columns: 58px 1fr; gap: 12px; }
+}

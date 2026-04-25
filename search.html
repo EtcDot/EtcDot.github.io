@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索 | 清风笔记</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">清风笔记</a>
+        <div class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="posts.html">文章</a>
+          <a href="tags.html">标签</a>
+          <a href="archives.html">归档</a>
+          <a href="search.html" class="active">搜索</a>
+        </div>
+        <button id="theme-toggle" aria-label="切换主题">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <h1>搜索</h1>
+    <div class="search-panel">
+      <input id="search-input" type="search" placeholder="输入 JavaScript、CSS、性能..." autocomplete="off">
+      <p class="hint">这是一个纯前端搜索示例，适合静态博客和 GitHub Pages。</p>
+    </div>
+    <section id="search-results" class="post-list" aria-live="polite"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 清风笔记. 使用 GitHub Pages 托管。</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
