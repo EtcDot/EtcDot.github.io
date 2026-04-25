@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>现代 CSS 布局完全指南 | 我是小萌萌</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">我是小萌萌</a>
+        <div class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="about.html">关于</a>
+          <a href="posts.html" class="active">文章</a>
+          <a href="tags.html">标签</a>
+          <a href="archives.html">归档</a>
+          <a href="search.html">搜索</a>
+        </div>
+        <button id="theme-toggle" aria-label="切换主题">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <article class="article-content">
+      <div class="post-meta"><time>2026-04-15</time><span class="post-tags"><a href="tags.html">CSS</a><a href="tags.html">设计</a></span></div>
+<h1>现代 CSS 布局完全指南</h1>
+<p>这是一篇占位示例文章，用来展示博客的文章列表、标签和归档效果。</p>
+<h2>适合使用 Flexbox 的场景</h2>
+<p>Flexbox 适合一维布局，比如导航栏、按钮组、卡片内部元素对齐。</p>
+<h2>适合使用 Grid 的场景</h2>
+<p>Grid 适合二维布局，比如仪表盘、作品集、复杂页面骨架。</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 我是小萌萌. 使用 GitHub Pages 托管。</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

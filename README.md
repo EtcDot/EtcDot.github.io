@@ -1,31 +1,68 @@
 # 我是小萌萌
 
-一个参考 AstroPaper 风格制作的静态个人博客模板，适合直接部署到 GitHub Pages。
+一个轻量的个人静态博客，使用 Markdown 管理文章，通过 `build.py` 生成静态页面，并由 GitHub Actions 自动发布到 GitHub Pages。
 
-## 文件
+线上地址：
 
-- `index.html`：首页，包含个人简介、精选文章、最新文章
-- `posts.html`：文章列表
-- `tags.html`：标签页
-- `archives.html`：归档页
-- `about.html`：关于我
-- `search.html`：纯前端搜索示例
-- `styles.css`：站点样式，支持响应式和暗色模式
-- `script.js`：主题切换和搜索逻辑
+```text
+https://etcdot.github.io/
+```
+
+## 内容管理
+
+文章源文件放在：
+
+```text
+content/posts/
+```
+
+每篇文章是一个 Markdown 文件，例如：
+
+```text
+content/posts/ai-learning.md
+```
+
+文章开头需要包含：
+
+```md
+---
+title: 文章标题
+date: 2026-05-01
+tags: [AI, 学习]
+description: 文章摘要
+featured: true
+---
+```
+
+## 本地构建
+
+```bash
+python3 build.py --out .
+```
 
 ## 本地预览
 
 ```bash
-cd ~/projects/astro-paper-clone
 python3 -m http.server 8000
 ```
 
-然后访问：
+然后打开：
 
 ```text
 http://localhost:8000
 ```
 
-## GitHub Pages 部署
+## 自动发布
 
-把这些文件上传到 `你的用户名.github.io` 仓库根目录，然后在仓库 Settings -> Pages 里选择 `main` 分支和 `/root` 即可。
+推送到 `main` 分支后，GitHub Actions 会运行：
+
+```bash
+python build.py --out _site
+```
+
+然后把 `_site` 发布到 GitHub Pages。
+
+## 文档
+
+- 用户文档：`docs/USER_GUIDE.md`
+- 运维文档：`docs/OPS_GUIDE.md`

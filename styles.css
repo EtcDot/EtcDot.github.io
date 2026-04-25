@@ -232,8 +232,10 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 13px;
+  margin-bottom: 28px;
 }
 
+.tag-cloud a,
 .tag { padding: 8px 13px; }
 .tag::after { content: " " attr(data-count); color: var(--muted); }
 .tag-sm { font-size: 0.95rem; }
@@ -241,27 +243,32 @@ h2 {
 .tag-lg { font-size: 1.2rem; }
 .tag-xl { font-size: 1.36rem; }
 
-.archives-list ul {
+.tag-section {
+  padding: 18px 0;
+  border-top: 1px dashed var(--line);
+}
+
+.tag-section ul,
+.archive-list {
   margin: 0 0 28px;
   padding: 0;
   list-style: none;
 }
 
-.archives-list li {
+.tag-section li,
+.archive-list li {
   display: grid;
-  grid-template-columns: 72px 1fr;
+  grid-template-columns: minmax(0, 1fr) 110px;
   gap: 18px;
   padding: 10px 0;
   border-bottom: 1px dashed var(--line);
 }
 
-.archives-list time {
-  color: var(--muted);
-  font-family: "Space Grotesk", sans-serif;
-}
+.archive-list li { grid-template-columns: 110px minmax(0, 1fr); }
 
-.archive-year {
-  color: var(--accent);
+.tag-section time,
+.archive-list time {
+  color: var(--muted);
   font-family: "Space Grotesk", sans-serif;
 }
 
@@ -296,5 +303,5 @@ h2 {
   .nav-links { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; }
   main { padding-top: 38px; }
   .post-card, .about-content, .search-panel { padding: 18px; border-radius: 18px; }
-  .archives-list li { grid-template-columns: 58px 1fr; gap: 12px; }
+  .archive-list li, .tag-section li { grid-template-columns: 1fr; gap: 4px; }
 }
