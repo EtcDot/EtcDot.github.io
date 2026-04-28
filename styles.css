@@ -291,6 +291,18 @@ h2 {
   font-size: 0.94rem;
 }
 
+.footer-stats {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--muted);
+}
+
+.post-views {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--muted);
+}
+
 @keyframes rise {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }

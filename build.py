@@ -227,10 +227,15 @@ def page(title: str, body: str, active: str, site: dict[str, str], extra_class: 
   <footer class="site-footer">
     <div class="container">
       <p>&copy; {html.escape(site['year'])} {html.escape(site['title'])}. 使用 GitHub Pages 托管。</p>
+      <p class="footer-stats">
+        本站总访客 <span id="busuanzi_value_site_uv"></span> 人 ·
+        总浏览量 <span id="busuanzi_value_site_pv"></span> 次
+      </p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
 """
@@ -322,7 +327,11 @@ def build(out_dir: Path) -> None:
 
     for post in posts:
         article = f"""    <article class="article-content">
-      <div class="post-meta"><time>{html.escape(post.date_label)}</time><span class="post-tags">{tags_html(post.tags)}</span></div>
+      <div class="post-meta">
+        <time>{html.escape(post.date_label)}</time>
+        <span class="post-tags">{tags_html(post.tags)}</span>
+        <span class="post-views">· 阅读量 <span id="busuanzi_value_page_pv"></span></span>
+      </div>
 {markdown_to_html(post.body)}
     </article>"""
         write(out_dir, post.url, page(post.title, article, "posts", site, "page"))
